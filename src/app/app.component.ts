@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { BracketComponent } from './components/bracket/bracket.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'tg-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  standalone: true,
+  imports: [
+    SidebarComponent,
+    BracketComponent
+  ]
 })
 export class AppComponent {
-  title = 'tournament-generator';
+
 }

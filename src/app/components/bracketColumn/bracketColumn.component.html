@@ -1,0 +1,15 @@
+<ng-container *ngIf="data$ | async as data">
+  <div class="min-w-[400px] h-full flex flex-col items-center justify-around">
+    <ng-container
+      *ngFor="let pairing of data.bracket[columnIndex]; let i = index"
+    >
+      <div class="w-3/4">
+        <tg-pairing
+          [pairing]="pairing"
+          [currentColumn]="columnIndex"
+          [pairingIndex]="i"
+        />
+      </div>
+    </ng-container>
+  </div>
+</ng-container>

@@ -1,0 +1,11 @@
+<ng-container *ngIf="data$ | async as data">
+  <div
+    class="min-w-screen min-h-screen h-screen flex bg-primary pl-[410px] space-x-5 overflow-scroll"
+  >
+    <ng-container
+      *ngFor="let n of [].constructor(data.bracket.length); let i = index"
+    >
+      <tg-bracket-column [columnIndex]="i" />
+    </ng-container>
+  </div>
+</ng-container>

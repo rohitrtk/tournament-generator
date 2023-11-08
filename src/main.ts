@@ -1,7 +1,22 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { isDevMode } from "@angular/core";
+import { bootstrapApplication } from "@angular/platform-browser";
+import { provideState, provideStore } from "@ngrx/store";
+import { provideEffects } from "@ngrx/effects";
+import { provideStoreDevtools } from "@ngrx/store-devtools";
+import { provideAnimations } from "@angular/platform-browser/animations";
 
-import { AppModule } from './app/app.module';
+import { AppComponent } from "./app/app.component";
+import { bracketFeatureKey, bracketReducer } from "./app/store/reducers";
 
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideStore(),
+    provideState(bracketFeatureKey, bracketReducer),
+    // provideEffects(authEffects),
+    provideAnimations(),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: !isDevMode(),
+    }),
+  ]
+})

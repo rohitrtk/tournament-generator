@@ -1,0 +1,60 @@
+<div
+  class="fixed left-0 top-0 h-screen bg-primary-dark border-r border-border-dark text-white shadow-lg w-[100px] overflow-y-scroll"
+  [@openClose]="open ? 'open' : 'closed'"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+>
+  <div class="h-full flex flex-col p-5">
+    <form
+      class="flex flex-col items-center justify-center space-y-5 pb-10"
+      [@openCloseChild]="open ? 'open' : 'closed'"
+      [formGroup]="form"
+      (submit)="createBracket()"
+    >
+      <h3 class="text-3xl">Current People</h3>
+
+      <ng-container formArrayName="people">
+        <ng-container *ngFor="let personForm of people.controls; let i = index">
+          <div class="flex space-x-2" [formGroupName]="i">
+            <input
+              type="text"
+              placeholder="Name..."
+              formControlName="name"
+              class="w-full border p-2 rounded-md text-black"
+            />
+            <button
+              class="p-2 flex items-center justify-center"
+              (click)="deletePerson(i)"
+            >
+              <ng-icon
+                name="ionRemoveCircleOutline"
+                class="text-2xl text-inerit"
+              />
+            </button>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <div class="space-x-5 w-full flex items-center justify-center">
+        <button
+          type="button"
+          class="border rounded-md p-2 w-full"
+          (click)="clearList()"
+        >
+          <span class="front"> Clear </span>
+        </button>
+        <button
+          type="button"
+          class="border rounded-md p-2 w-full"
+          (click)="addPerson()"
+        >
+          Add Person
+        </button>
+      </div>
+
+      <button type="submit" class="border rounded-md p-2">
+        Create Bracket
+      </button>
+    </form>
+  </div>
+</div>
